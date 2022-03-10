@@ -1,0 +1,24 @@
+#main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.letter-box {
+  display: flex;
+  width: 100px;
+  height: 100px;
+  background-color: grey;
+  margin-left: 10px;
+  margin-right: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+}
