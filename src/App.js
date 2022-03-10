@@ -14,8 +14,8 @@ class App extends React.Component {
       row5: "",
       row6: "",
       currentRow: 1,
-      letterStates: [[{backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}],
-                      [{backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "grey", transition: "1s", border: "4px solid #565656"}]
+      letterStates: [[{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}]
                     ]
     };
 
@@ -82,6 +82,12 @@ class App extends React.Component {
       }
       else if (this.state.answer.includes(this.state[thisRow][i])) {
         x[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #ba980d", backgroundColor: "#deb510"};
+        this.setState({
+          letterStates: x
+        })
+      }
+      else {
+        x[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #565656", backgroundColor: "#262626"};
         this.setState({
           letterStates: x
         })

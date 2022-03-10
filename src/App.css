@@ -3,6 +3,11 @@
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  color: white;
+}
+
+#title {
+  color: black;
 }
 
 .row {
@@ -14,7 +19,7 @@
   display: flex;
   width: 100px;
   height: 100px;
-  background-color: grey;
+  background-color: black;
   margin-left: 10px;
   margin-right: 10px;
   text-align: center;
