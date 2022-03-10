@@ -14,7 +14,7 @@ class App extends React.Component {
       row5: "",
       row6: "",
       currentRow: 1,
-      letterStates: []
+      letterStates: [{backgroundColor: "grey", transition: "1s"}]
     };
 
     this.testFunc = this.testFunc.bind(this);
@@ -32,6 +32,11 @@ class App extends React.Component {
     console.log(e.key);
     let thisRow = "row" + this.state.currentRow;
     let updateObj = {};
+    // let x = this.state.letterStates;
+    // x[0] = {backgroundColor: "green", transition: "1s"};
+    // this.setState({
+    //   letterStates: x
+    // })
     if (e.key.match(/^[A-Za-z]$/) && this.state[thisRow].length < 5) {
       updateObj[thisRow] = this.state[thisRow] + e.key.toUpperCase()
       this.setState(updateObj);
@@ -57,7 +62,7 @@ class App extends React.Component {
         </div>
         
         <div className="row">
-          <div className="letter-box" >{this.state.row1[0]}</div>
+          <div className="letter-box" style={this.state.letterStates[0]}>{this.state.row1[0]}</div>
           <div className="letter-box">{this.state.row1[1]}</div>
           <div className="letter-box">{this.state.row1[2]}</div>
           <div className="letter-box">{this.state.row1[3]}</div>
