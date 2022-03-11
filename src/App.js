@@ -14,13 +14,14 @@ class App extends React.Component {
       row5: "",
       row6: "",
       currentRow: 1,
-      letterStates: [[{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
-                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
-                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
-                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
-                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
-                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}]
-                    ]
+      letterStates: [
+        [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+        [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+        [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+        [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+        [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+        [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}]
+      ]
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
@@ -31,6 +32,9 @@ class App extends React.Component {
 
   componentDidMount() {
     document.body.addEventListener("keydown", this.handleKeyPress);
+    // this.setState({
+    //   answer: "SHORN"
+    // })
   }
 
   componentWillUnmount() {
