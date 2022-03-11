@@ -15,13 +15,18 @@ class App extends React.Component {
       row6: "",
       currentRow: 1,
       letterStates: [[{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
+                      [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
                       [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}]
                     ]
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.animateLetterInput = this.animateLetterInput.bind(this);
-    this.handleWordEnter = this.handleWordEnter.bind(this);
+    // this.handleWordEnter = this.handleWordEnter.bind(this);
+    this.handleWordEnterDelayed = this.handleWordEnterDelayed.bind(this);
   }
 
   componentDidMount() {
@@ -47,7 +52,7 @@ class App extends React.Component {
       this.setState(updateObj);
     }
     else if (e.key === "Enter" && this.state[thisRow].length === 5) {
-      this.handleWordEnter();
+      this.handleWordEnterDelayed(thisRow);
       this.setState({
         currentRow: this.state.currentRow + 1
       });
@@ -56,42 +61,71 @@ class App extends React.Component {
 
   animateLetterInput(isBackspace) {
     let thisRow = "row" + this.state.currentRow;
-    let x = this.state.letterStates;
+    let letterStyles = this.state.letterStates;
     // console.log(x[this.state.currentRow - 1][this.state[thisRow].length - 1]);
     if (!isBackspace) {
-      x[this.state.currentRow - 1][this.state[thisRow].length - 1] = {transition: "0.2s", transform: "scale(1.07)", border: "4px solid #565656"};
+      letterStyles[this.state.currentRow - 1][this.state[thisRow].length - 1] = {transition: "0.2s", transform: "scale(1.07)", border: "4px solid #565656"};
     }
     else {
-      x[this.state.currentRow - 1][this.state[thisRow].length - 1] = {transition: "0.5s", transform: "scale(1)", border: "4px solid #565656"};
+      letterStyles[this.state.currentRow - 1][this.state[thisRow].length - 1] = {transition: "0.5s", transform: "scale(1)", border: "4px solid #565656"};
     }
     this.setState({
-      letterStates: x
+      letterStates: letterStyles
     })
   }
 
-  handleWordEnter() {
-    let thisRow = "row" + this.state.currentRow;
-    console.log(this.state[thisRow]);
-    let x = this.state.letterStates;
-    for (let i = 0; i < 5; i++) {
-      if (this.state[thisRow][i] == this.state.answer[i]) {
-        x[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #1a5408", backgroundColor: "#236e0c"};
-        this.setState({
-          letterStates: x
-        })
-      }
-      else if (this.state.answer.includes(this.state[thisRow][i])) {
-        x[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #ba980d", backgroundColor: "#deb510"};
-        this.setState({
-          letterStates: x
-        })
-      }
-      else {
-        x[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #565656", backgroundColor: "#262626"};
-        this.setState({
-          letterStates: x
-        })
-      }
+  // handleWordEnter() {
+  //   let thisRow = "row" + this.state.currentRow;
+  //   console.log(this.state[thisRow]);
+  //   let letterStyles = this.state.letterStates;
+  //   for (let i = 0; i < 5; i++) {
+  //     if (this.state[thisRow][i] === this.state.answer[i]) {
+  //       letterStyles[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #1a5408", backgroundColor: "#236e0c"};
+  //       this.setState({
+  //         letterStates: letterStyles
+  //       })
+  //     }
+  //     else if (this.state.answer.includes(this.state[thisRow][i])) {
+  //       letterStyles[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #ba980d", backgroundColor: "#deb510"};
+  //       this.setState({
+  //         letterStates: letterStyles
+  //       })
+  //     }
+  //     else {
+  //       letterStyles[this.state.currentRow - 1][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #565656", backgroundColor: "#262626"};
+  //       this.setState({
+  //         letterStates: letterStyles
+  //       })
+  //     }
+  //   }
+  // }
+
+  handleWordEnterDelayed(thisRow, i = 0) {
+    // console.log(this.state.currentRow);
+    if (i < 5) {
+        setTimeout(() => {
+        // console.log(this.state[thisRow]);
+        let letterStyles = this.state.letterStates;
+        if (this.state[thisRow][i] === this.state.answer[i]) {
+          letterStyles[this.state.currentRow - 2][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #1a5408", backgroundColor: "#236e0c"};
+          this.setState({
+            letterStates: letterStyles
+          })
+        }
+        else if (this.state.answer.includes(this.state[thisRow][i])) {
+          letterStyles[this.state.currentRow - 2][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #ba980d", backgroundColor: "#deb510"};
+          this.setState({
+            letterStates: letterStyles
+          })
+        }
+        else {
+          letterStyles[this.state.currentRow - 2][i] = {transition: "0.5s", transform: "scale(1.07)", border: "4px solid #565656", backgroundColor: "#262626"};
+          this.setState({
+            letterStates: letterStyles
+          })
+        }
+        this.handleWordEnterDelayed(thisRow, i + 1)
+      }, 300)
     }
   }
 
@@ -118,6 +152,38 @@ class App extends React.Component {
           <div className="letter-box" style={this.state.letterStates[1][2]}>{this.state.row2[2]}</div>
           <div className="letter-box" style={this.state.letterStates[1][3]}>{this.state.row2[3]}</div>
           <div className="letter-box" style={this.state.letterStates[1][4]}>{this.state.row2[4]}</div>
+        </div>
+
+        <div className="row">
+          <div className="letter-box" style={this.state.letterStates[2][0]}>{this.state.row3[0]}</div>
+          <div className="letter-box" style={this.state.letterStates[2][1]}>{this.state.row3[1]}</div>
+          <div className="letter-box" style={this.state.letterStates[2][2]}>{this.state.row3[2]}</div>
+          <div className="letter-box" style={this.state.letterStates[2][3]}>{this.state.row3[3]}</div>
+          <div className="letter-box" style={this.state.letterStates[2][4]}>{this.state.row3[4]}</div>
+        </div>
+
+        <div className="row">
+          <div className="letter-box" style={this.state.letterStates[3][0]}>{this.state.row4[0]}</div>
+          <div className="letter-box" style={this.state.letterStates[3][1]}>{this.state.row4[1]}</div>
+          <div className="letter-box" style={this.state.letterStates[3][2]}>{this.state.row4[2]}</div>
+          <div className="letter-box" style={this.state.letterStates[3][3]}>{this.state.row4[3]}</div>
+          <div className="letter-box" style={this.state.letterStates[3][4]}>{this.state.row4[4]}</div>
+        </div>
+
+        <div className="row">
+          <div className="letter-box" style={this.state.letterStates[4][0]}>{this.state.row5[0]}</div>
+          <div className="letter-box" style={this.state.letterStates[4][1]}>{this.state.row5[1]}</div>
+          <div className="letter-box" style={this.state.letterStates[4][2]}>{this.state.row5[2]}</div>
+          <div className="letter-box" style={this.state.letterStates[4][3]}>{this.state.row5[3]}</div>
+          <div className="letter-box" style={this.state.letterStates[4][4]}>{this.state.row5[4]}</div>
+        </div>
+
+        <div className="row">
+          <div className="letter-box" style={this.state.letterStates[5][0]}>{this.state.row6[0]}</div>
+          <div className="letter-box" style={this.state.letterStates[5][1]}>{this.state.row6[1]}</div>
+          <div className="letter-box" style={this.state.letterStates[5][2]}>{this.state.row6[2]}</div>
+          <div className="letter-box" style={this.state.letterStates[5][3]}>{this.state.row6[3]}</div>
+          <div className="letter-box" style={this.state.letterStates[5][4]}>{this.state.row6[4]}</div>
         </div>
 
       </div>

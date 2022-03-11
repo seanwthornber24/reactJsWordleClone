@@ -4,10 +4,11 @@
   align-items: center;
   flex-direction: column;
   color: white;
+  font-family: 'Roboto', sans-serif;
 }
 
 #title {
-  color: black;
+  color: white;
 }
 
 .row {
@@ -17,8 +18,8 @@
 
 .letter-box {
   display: flex;
-  width: 100px;
-  height: 100px;
+  width: 90px;
+  height: 90px;
   background-color: black;
   margin-left: 10px;
   margin-right: 10px;
