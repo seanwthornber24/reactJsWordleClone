@@ -130,12 +130,14 @@ class App extends React.Component {
   }
 
   render() {
-
+    
     return (
+      
       <div id="main-container">
         
         <div id="title">
           <h1>Wordle</h1>
+          {this.testFunc}
         </div>
         
         <div className="row">
