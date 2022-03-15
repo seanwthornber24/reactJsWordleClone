@@ -60,6 +60,9 @@ class App extends React.Component {
       this.setState({
         currentRow: this.state.currentRow + 1
       });
+      if (this.state[thisRow] === this.state.answer) {
+        setTimeout(() => alert(`You got the correct word in ${this.state.currentRow - 1} guesses, congratulations!`), 2000);
+      }
     }
   }
 
