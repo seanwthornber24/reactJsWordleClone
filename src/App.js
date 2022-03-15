@@ -64,7 +64,7 @@ class App extends React.Component {
       to append the character entered to the end.
       If the key pressed is a backspace, then we update the state to remove the last character in the row.
       If the key pressed is enter, and the row has a full 5 letter word in it then we first check to see if the word
-      entered is a valid word. If it isn't we add a shake animation to the row. If it is, we handle the word being entered,
+      entered is a valid word. If it isn't we add a shake animation to the row. If it is, we handle the word being entered and
       increment the currentRow state property. We also delay the game for 2 seconds so the user cannot type while letters
       are being revealed. We finally must check to see whether the user has got the correct answer - if they have, then we
       display an alert and set the gameActive state property to false so that the game has ended.
@@ -145,7 +145,6 @@ class App extends React.Component {
       letterStates: letterStyles
     })
   }
-
 
   handleWordEnterDelayed(thisRow, i = 0) {
     if (i < 5) {
