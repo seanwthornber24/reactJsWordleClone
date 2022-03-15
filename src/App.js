@@ -62,30 +62,38 @@ class App extends React.Component {
         this.setState(updateObj);
       }
       else if (e.key === "Enter" && this.state[thisRow].length === 5) {
-        this.handleWordEnterDelayed(thisRow);
-        this.setState({
-          currentRow: this.state.currentRow + 1,
-        });
-        this.waitGame();
-        if (this.state[thisRow] === this.state.answer) {
-          setTimeout(() => {
-            alert(`You got the correct word in ${this.state.currentRow - 1} guesses, congratulations!`);
-            this.setState({
-              gameActive: false
-            });
-          }, 2000);
+        if (this.state.possibleAnswerList.includes(this.state[thisRow].toLowerCase())) {
+          this.handleWordEnterDelayed(thisRow);
+          this.setState({
+            currentRow: this.state.currentRow + 1,
+          });
+          this.waitGame(2000);
+          if (this.state[thisRow] === this.state.answer) {
+            setTimeout(() => {
+              alert(`You got the correct word in ${this.state.currentRow - 1} guesses, congratulations!`);
+              this.setState({
+                gameActive: false
+              });
+            }, 2000);
+          }
+        }
+        else {
+          let row = document.getElementById(thisRow);
+          row.classList.add("not-a-word");
+          this.waitGame(500);
+          setTimeout(() => row.classList.remove("not-a-word"), 500);
         }
       }
     }
   }
 
-  waitGame() {
+  waitGame(delayTime) {
     this.setState({
       gameActive: false
     });
     setTimeout(() => this.setState({
       gameActive: true
-    }), 2000)
+    }), delayTime)
   }
 
   animateLetterInput(isBackspace) {
@@ -169,7 +177,7 @@ class App extends React.Component {
           {this.testFunc}
         </div>
         
-        <div className="row">
+        <div className="row" id="row1">
           <div className="letter-box" style={this.state.letterStates[0][0]}>{this.state.row1[0]}</div>
           <div className="letter-box" style={this.state.letterStates[0][1]}>{this.state.row1[1]}</div>
           <div className="letter-box" style={this.state.letterStates[0][2]}>{this.state.row1[2]}</div>
