@@ -21,13 +21,15 @@ class App extends React.Component {
         [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
         [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}],
         [{backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}, {backgroundColor: "black", transition: "1s", border: "4px solid #565656"}]
-      ]
+      ],
+      gameActive: true
     };
 
     this.handleKeyPress = this.handleKeyPress.bind(this);
     this.animateLetterInput = this.animateLetterInput.bind(this);
     // this.handleWordEnter = this.handleWordEnter.bind(this);
     this.handleWordEnterDelayed = this.handleWordEnterDelayed.bind(this);
+    this.waitGame = this.waitGame.bind(this);
   }
 
   componentDidMount() {
@@ -43,27 +45,44 @@ class App extends React.Component {
 
   handleKeyPress(e) {
     // console.log(e.key);
-    let thisRow = "row" + this.state.currentRow;
-    let updateObj = {};
-    if (e.key.match(/^[A-Za-z]$/) && this.state[thisRow].length < 5) {
-      updateObj[thisRow] = this.state[thisRow] + e.key.toUpperCase()
-      this.setState(updateObj);
-      this.animateLetterInput(false);
-    }
-    else if (e.key === "Backspace") {
-      this.animateLetterInput(true);
-      updateObj[thisRow] = this.state[thisRow].slice(0, -1);
-      this.setState(updateObj);
-    }
-    else if (e.key === "Enter" && this.state[thisRow].length === 5) {
-      this.handleWordEnterDelayed(thisRow);
-      this.setState({
-        currentRow: this.state.currentRow + 1
-      });
-      if (this.state[thisRow] === this.state.answer) {
-        setTimeout(() => alert(`You got the correct word in ${this.state.currentRow - 1} guesses, congratulations!`), 2000);
+    if (this.state.gameActive) {
+      let thisRow = "row" + this.state.currentRow;
+      let updateObj = {};
+      if (e.key.match(/^[A-Za-z]$/) && this.state[thisRow].length < 5) {
+        updateObj[thisRow] = this.state[thisRow] + e.key.toUpperCase()
+        this.setState(updateObj);
+        this.animateLetterInput(false);
+      }
+      else if (e.key === "Backspace") {
+        this.animateLetterInput(true);
+        updateObj[thisRow] = this.state[thisRow].slice(0, -1);
+        this.setState(updateObj);
+      }
+      else if (e.key === "Enter" && this.state[thisRow].length === 5) {
+        this.handleWordEnterDelayed(thisRow);
+        this.setState({
+          currentRow: this.state.currentRow + 1,
+        });
+        this.waitGame();
+        if (this.state[thisRow] === this.state.answer) {
+          setTimeout(() => {
+            alert(`You got the correct word in ${this.state.currentRow - 1} guesses, congratulations!`);
+            this.setState({
+              gameActive: false
+            });
+          }, 2000);
+        }
       }
     }
+  }
+
+  waitGame() {
+    this.setState({
+      gameActive: false
+    });
+    setTimeout(() => this.setState({
+      gameActive: true
+    }), 2000)
   }
 
   animateLetterInput(isBackspace) {
