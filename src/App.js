@@ -102,6 +102,22 @@ class App extends React.Component {
         else {
           let row = document.getElementById(thisRow);
           row.classList.add("not-a-word");
+
+          const popup = document.createElement("div");
+          const textNode = document.createElement("h2");
+          textNode.textContent = "Not in word list";
+          popup.appendChild(textNode);
+          popup.classList.add("popupIn");
+
+          let popupContainer = document.getElementById("popupContainer");
+          popupContainer.appendChild(popup);
+
+          setTimeout(() => {
+            popup.classList.remove("popupIn");
+            popup.classList.add("popupOut");
+          }, 1000)
+
+          setTimeout(() => {popupContainer.removeChild(popup)}, 1500);
           this.waitGame(500);
           setTimeout(() => row.classList.remove("not-a-word"), 500);
         }
@@ -230,6 +246,9 @@ class App extends React.Component {
           <div className="letter-box" style={this.state.letterStates[5][2]}>{this.state.row6[2]}</div>
           <div className="letter-box" style={this.state.letterStates[5][3]}>{this.state.row6[3]}</div>
           <div className="letter-box" style={this.state.letterStates[5][4]}>{this.state.row6[4]}</div>
+        </div>
+
+        <div id="popupContainer">
         </div>
 
       </div>

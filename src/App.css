@@ -52,3 +52,47 @@
   animation-name: shake;
   animation-duration: 0.5s;
 }
+
+#popupContainer {
+  position: absolute;
+  color: black;
+  /* opacity: 0; */
+}
+
+@keyframes fadeIn {
+  0% {opacity: 0;}
+  100% {opacity: 1;}
+}
+
+@keyframes fadeOut {
+  0% {opacity: 1;}
+  100% {opacity: 0;}
+}
+
+.popupIn {
+  background-color: white;
+  animation-name: fadeIn;
+  animation-duration: 0.2s;
+  width: 200px;
+  display: flex;
+  text-align: center;
+  height: 80px;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 5px;
+  /* transition: 1s; */
+}
+
+.popupOut {
+  background-color: white;
+  animation-name: fadeOut;
+  animation-duration: 0.5s;
+  width: 200px;
+  display: flex;
+  text-align: center;
+  height: 80px;
+  justify-content: center;
+  border-radius: 10px;
+  margin-top: 5px;
+  /* transition: 1s; */
+}
