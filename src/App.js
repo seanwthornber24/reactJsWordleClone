@@ -96,6 +96,9 @@ class App extends React.Component {
               this.setState({
                 gameActive: false
               });
+              if (this.state.currentRow === 7) {
+                this.addPopup("Phew...");
+              }
             }, 2000);
           }
           else if (this.state.currentRow === 7) {
