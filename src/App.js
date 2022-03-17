@@ -98,26 +98,16 @@ class App extends React.Component {
               });
             }, 2000);
           }
+          else if (this.state.currentRow === 7) {
+            setTimeout(() => this.addPopup(this.state.answer), 2300);
+          }
         }
         else {
           let row = document.getElementById(thisRow);
           row.classList.add("not-a-word");
 
-          const popup = document.createElement("div");
-          const textNode = document.createElement("h2");
-          textNode.textContent = "Not in word list";
-          popup.appendChild(textNode);
-          popup.classList.add("popupIn");
+          this.addPopup("Not in words list");
 
-          let popupContainer = document.getElementById("popupContainer");
-          popupContainer.appendChild(popup);
-
-          setTimeout(() => {
-            popup.classList.remove("popupIn");
-            popup.classList.add("popupOut");
-          }, 1000)
-
-          setTimeout(() => {popupContainer.removeChild(popup)}, 1500);
           this.waitGame(500);
           setTimeout(() => row.classList.remove("not-a-word"), 500);
         }
@@ -187,6 +177,25 @@ class App extends React.Component {
         this.handleWordEnterDelayed(thisRow, i + 1)
       }, 300)
     }
+  }
+
+  addPopup(popupText) {
+    const popup = document.createElement("div");
+    const textNode = document.createElement("h2");
+    textNode.textContent = popupText;
+    popup.appendChild(textNode);
+    popup.classList.add("popupIn");
+
+    let popupContainer = document.getElementById("popupContainer");
+    popupContainer.appendChild(popup);
+
+    setTimeout(() => {
+      popup.classList.remove("popupIn");
+      popup.classList.add("popupOut");
+    }, 1000);
+
+    setTimeout(() => {popupContainer.removeChild(popup)}, 1500);
+
   }
 
   render() {
